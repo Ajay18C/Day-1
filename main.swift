@@ -1,4 +1,4 @@
-class Secret{
+/*class Secret{
   func display(){}
   func LuckMeter(){}
 }
@@ -73,6 +73,7 @@ class FortuneTeller{
   }
 }
 //____main function____
+
 var nameList=[String?]()
 var temp=""
 while(true){
@@ -101,4 +102,16 @@ let anmi=readLine()
 if(anmi != ""){
   break
 }
+}
+*/
+print("Enter 1 to check your Luck \n\nEnter 2 to boost your luck")
+let choice=Int(readLine()!) 
+var luck :Int
+switch choice {
+  case 2:
+  print("\n\n::::::::::::::::::::::::::::::::::::::::\n");
+  print("-----THIS IS FORTUNE BOOSTER-----");
+  print();
+  default:
+    break
 }
