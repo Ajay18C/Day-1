@@ -12,7 +12,7 @@ class sumOfDigits:Secret{
   override func display(){
     while(num > 0 || res > 9){
       if(num == 0){
-        num=res
+        num=res 
         res=0
       }
       self.res+=num%10
