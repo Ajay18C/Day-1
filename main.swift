@@ -7,6 +7,10 @@ protocol Secret{
 class sumOfDigits:Secret{
   private var num:Int;
   var res:Int;
+  init(luk:Int){
+    self.res=(luk-1)*3
+    self.num=0
+  }
   init(num:Int){
     self.num=num
     self.res=0
@@ -24,25 +28,21 @@ class sumOfDigits:Secret{
   func LuckMeter(){
     switch(self.res/3){
       case 0:
-      print("::::::::::::::::::::::::::::::::::::::::")
-      print("-----100% LUCK 🍀-----")
-      print("                                        ")
-      print("All Belongs To You")
+      print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
+      print("\t\t\t-----100% LUCK 🍀-----\n")
+      print("\tAll Belongs To You")
       case 1:
-      print("::::::::::::::::::::::::::::::::::::::::")
-      print("-----75% LUCK ☘️-----")
-      print("                                        ")
-      print("The only thing that overcomes hard luck is hard work.")
+      print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
+      print("\t\t\t-----75% LUCK ☘️-----\n")
+      print("\tThe only thing that overcomes hard luck is hard work.")
       case 2:
-      print("::::::::::::::::::::::::::::::::::::::::")
-      print("-----50% LUCK 🌱-----")
-      print("                                        ")
-      print("Concentration attracts luck factor.")
+      print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
+      print("\t\t\t-----50% LUCK 🌱-----\n")
+      print("\tConcentration attracts luck factor.")
       case 3:
-      print("::::::::::::::::::::::::::::::::::::::::")
-      print("-----30% LUCK 🍁-----")
-      print("                                        ")
-      print("Luck is believing you’re lucky.")
+      print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
+      print("\t\t\t-----30% LUCK 🍁-----\n")
+      print("\tLuck is believing you’re lucky.")
       default:
       print("::::::::::::::::::::::::::::::::::::::::")
     }
@@ -74,16 +74,20 @@ class FortuneTeller{
     SOD.LuckMeter()
     self.luckyNumber=SOD.res/3
   }
+  func addLuck(num:Int){
+      let SOD1=sumOfDigits(luk:num)
+      SOD1.LuckMeter()
+    }
 }
 class BoostFortune{
   var cou=0
-  let date = Date()
-  let calendar = Calendar.current
-  let minutes:Int
-  let seconds:Int
+  var date = Date()
+  var calendar = Calendar.current
+  var minutes:Int
+  var seconds:Int
   var Timer:Float
   init(){
-    print("Click \'ENTER\' and start task to boost your luck or \"0\" to menu")
+    print("Click \'ENTER\' and start task to boost your luck or \"0\" to menu ",terminator:"")
     self.minutes = self.calendar.component(.minute, from: date)
     self.seconds = self.calendar.component(.second, from: date)
     self.Timer=0
@@ -95,28 +99,52 @@ class BoostFortune{
     let diff1:Float
     let diff2:Float
     let diff3:Float
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     self.Timer=Float(self.minutes)+Float(self.seconds)/60.0
-    print("Enter \"BOOST\"") //task 1
+    print("Enter \"BOOST\" ",terminator:"") //task 1
     task1=readLine()!
     task1=task1.uppercased()
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     diff1=abs((Float(self.minutes)+Float(self.seconds)/60.0)-self.Timer)
     if(task1 == "BOOST"){
       self.cou+=1
     }
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     self.Timer=Float(self.minutes)+Float(self.seconds)/60.0
-    print("Enter \"LUCKY\" ")  //task 2
+    print("Enter \"LUCKY\" ",terminator:"")  //task 2
     task2=readLine()!
     task2=task2.uppercased()
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     diff2=abs((Float(self.minutes)+Float(self.seconds)/60.0)-self.Timer)
-    if(task2 == "LUCKY" && diff1 >= diff2 ){
+    if(task2 == "LUCKY" && diff1 > diff2 ){
       self.cou+=1
     }
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     self.Timer=Float(self.minutes)+Float(self.seconds)/60.0
-    print("Enter \"GOODA\" ")   //task 3
+    print("Enter \"GOODA\" ",terminator:"")   //task 3
     task3=readLine()!
     task3=task3.uppercased()
+    self.date = Date()
+    self.calendar = Calendar.current
+    self.minutes = self.calendar.component(.minute, from: date)
+    self.seconds = self.calendar.component(.second, from: date)
     diff3=abs((Float(self.minutes)+Float(self.seconds)/60.0)-self.Timer)
-    if(task1 == "GOODA" && diff2 > diff3){
+    if(task3 == "GOODA" && diff2 > diff3){
       self.cou+=1
     }
   }
@@ -126,57 +154,50 @@ class BoostFortune{
 var nameList=[String?]()
 var temp=""
 while(true){
-print("                                        ")
-print("                                        ")
-print("::::::::::::::::::::::::::::::::::::::::");
-print("-----THIS IS FORTUNE TELLER MACHINE-----");
+print("\n\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+print("\t\t\t-----THIS IS FORTUNE TELLER MACHINE-----");
 print();
-print("*****ENTER YOUR NAME ***** :");
+print("\t_____ ENTER YOUR NAME _____ : ",terminator:"");
 let name=readLine();//get name from user
-print("*****ENTER YOUR AGE ***** :");
+print("\n\t-----ENTER YOUR AGE ----- : ",terminator:"");
 let age=Int(readLine()!);//get age from user
 temp=name!+String(age!)
 if nameList.contains(temp){
-  print("-----ALREADY DONE-----")
+  print("\n\t-----ALREADY DONE-----")
   break
 }
 nameList.append(temp)
-print("*****ENTER YOUR FAVORITE COLOR ***** :");
+print("\n\t_____ ENTER YOUR FAVORITE COLOR _____ : ",terminator:"");
 let color=readLine();//get fav color from user
 let obj1=FortuneTeller(name:name!,age:age!,color:color!);//creating object for FortuneTeller class as obj1
 obj1.CalculateFortune()//calling class method using object
 if(obj1.luckyNumber != 0){
-  print("\n-----PRESS \"1\" TO BOOST YOUR LUCK-----")
+  print("\n\t-----PRESS \"1\" TO BOOST YOUR LUCK----- ",terminator:"")
   let anmi=readLine()
 if(anmi != ""){
-  print("\n\n::::::::::::::::::::::::::::::::::::::::\n");
-  print("-----THIS IS FORTUNE BOOSTER-----");
+  print("\n\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+  print("\t\t\t-----THIS IS FORTUNE BOOSTER-----");
   print("Here you can boost your luck");
-  print("\nyour current luck is \(obj1.luckyNumber)\n")
+  print("\n\tyour current luck is \(obj1.luckyNumber)\n")
   let obj2=BoostFortune()
   let tasks=readLine()
   if(tasks == ""){
     obj2.task()
     if(obj2.cou == 3){
-      obj1.luckyNumber-=1
-      obj1.CalculateFortune()
+      obj1.addLuck(num:obj1.luckyNumber)
     }
     else{
-      print("\n Finsh task early as possible and correctly \n")
+      print("\n\t Finsh task early as possible and correctly \n")
     }
   }
   else if(tasks == "0"){
     continue
   }
-  
-}
-else{
-break
-}
+  }
 }
   
   else{
-print("\n-----PRESS ENTER TO RETRY-----")
+print("\n\t-----PRESS ENTER TO RETRY----- ",terminator:"")
 let anmi=readLine()
 if(anmi != ""){
   break
